@@ -6,20 +6,16 @@
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-// | Author: 流年 <liu21st@gmail.com>
+// | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 
-// 应用公共文件
-use think\Request;
-$request = Request::instance();
+// [ 应用入口文件 ]
 
-$request->siteName="shuaibi";
+// 定义应用目录
+define('APP_PATH', __DIR__ . '/../application/');
+define('CONF_PATH', __DIR__ . '/../config/');
 
-function getSiteName(Request $request)
-{
-	return "站点".$request->siteName;
-}
-
-
-//注册请求对象的方法
-Request::hook('getSiteName','getSiteName');
+// define('BIND_MODULE','index');
+// define('BIND_MODULE','index/user');
+// 加载框架引导文件
+require __DIR__ . '/../thinkphp/start.php';
