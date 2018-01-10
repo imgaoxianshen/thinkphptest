@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	<h1>Think</h1>
+	<p>server.http_host::{$Think.server.http_host}</p>
+	<p>cookie:{$Think.cookie.siteName}</p>
+	<p>get.id:{$Think.get.id}</p>
+	<p>系统常量：{$Think.const.CONF_PATH}</p>
+
+	<h1>Request</h1>
+	<p>get:{$Request.get.id}</p>
+	<p>param : {$Request.param.id}</p>
+	<p>ip:{$Request.ip}</p>
+
+{/*原样输出*/}
+{//原样输出}
+{literal}
+	<p>domain:md5加密：{$domain|md5}</p>
+	<p>time : {$time}</p>
+	<p>time格式化:{$time|date="Y-m-d H:i:s",###}</p>
+	<p>time格式化:{:date("Y-m-d H:i:s",$time)}</p>
+
+	<h1>模板默认值</h1>
+	<p>{$country|default='asd'}</p>
+	<p>id : {$Think.get.id|default='100'}</p>
+{/literal}
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<table border="1" cellpacing="0" cellpadding="2" width="40%">
+		<caption style="font-size: 22px;font-weight: blod;">员工信息表</caption>
+		<tr>
+			<th>员工编号</th>
+			<th>员工姓名</th>
+			<th>员工年龄</th>
+		</tr>
+
+{volist name='user' id='vo' key='key' offset='2' length='5' empty='没有数据'}
+		<tr>
+			<th>{$key}</th>
+			<th>{$vo.name}</th>
+			<th>{$vo['age']}</th>
+		</tr>
+{/volist}
+<tr></tr>
+
+
+{volist name='user' id='vo' key='key' offset='2' length='5' empty='没有数据'}
+		<tr>
+			<th>{$key}</th>
+			<th>{$vo.name}</th>
+			<th>{egt name="vo.age" value='8'}成年{else /}未成年{/egt}</th>
+		</tr>
+{/volist}
+<tr></tr>
+
+
+
+
+{//foreach}
+{foreach name="user" item='us'}
+		<tr>
+			<th>{$key}</th>
+			<th>{$us.name}</th>
+			<th>{$us['age']}</th>
+		</tr>
+{/foreach}
+
+
+{//for}
+
+{for start='0' end='10' comparsion='lt' name='i' step='1'}
+	<tr>
+		{for start='0' end='3' comparsion='lt' name='j' step='1'}
+		<td>{$j*5+$i}</td>
+		
+		{/for}
+	</tr>
+{/for}
+
+
+
+	</table>
+
+
+</body>
+</html>

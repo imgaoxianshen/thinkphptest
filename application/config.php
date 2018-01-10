@@ -136,6 +136,13 @@ return [
         'taglib_begin' => '{',
         // 标签库标签结束标记
         'taglib_end'   => '}',
+
+        'layout_on'    =>true,
+
+        'layout_name'  =>'layout',
+
+        // 'layout_item' =>'{__CONTENT__}',
+
     ],
 
     // 视图输出字符串内容替换

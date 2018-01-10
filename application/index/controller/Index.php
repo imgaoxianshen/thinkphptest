@@ -6,6 +6,7 @@ use think\Config;
 use think\Request;
 use think\Db;
 use app\index\model\User;
+use think\View;
 class Index extends Controller
 {
     public function index()
@@ -226,6 +227,121 @@ class Index extends Controller
     public function demo10(){
         $res = User::get("1200");
         dump($res->getData());
+    }
+
+    //-------------------视图--------------
+    public function demo11()
+    {
+        //动态创建
+        // $view = new  View();
+        //静态创建
+        // $view = View::instance();
+
+        // $view->assign('domain','shuabi.cpm');
+        // return $view->fetch();
+
+        //继承controller之后
+        //controller类里面有$view指向实例
+        //所以可以不创建实例 
+        // $this->view->assign('domain','shuaibi.com');
+        // $this->view->assign('siteName','shuaibi');
+        $this->assign('domain','shuaibi.com');
+        $this->assign('siteName','shuaibi');
+        // $this->assign([
+        //     'name'=>'shuaibiyo',
+        //     'lesson'=>'php',
+        // ]);
+        // return $this->fetch('demo11',['name'=>'shuaibiyo','lesson'=>'php']);
+        // return $this->view->fetch();
+        // $content = '{$name}--{$lesson}';
+        // return $this->display($content,['name'=>'shuaibito','lesson'=>'java']);
+
+
+        //-----给对象添加属性方式赋值
+
+        // $this->view->name = "shuaibi";
+        // $this->view->lesson = "hello";
+
+        // $view = View::instance();
+        // $view->name="shuaibiyooo";
+        // $view->lesson = "asdasd";
+        return $this->fetch();
+
+
+    }
+
+
+    public function demo12()
+    {
+        //跨控制器
+        // return $this->fetch('user/index');
+        //跨模块
+        // return $this->fetch('admin@user/index');
+
+        //访问view的根目录的文件
+        // return $this->fetch('/index');
+        //访问public文件夹下面的
+        // return $this-->fetch('./xxx/xxx.html');
+    }
+
+
+    public function demo13()
+    {
+        $user = [
+            'name'=>'shuaibi',
+            'age'=>28,
+        ];
+
+        $book = new \stdClass();
+        $book ->name='shuabhi';
+        $book ->price=99;
+        $this->assign([
+            'user'=>$user,
+            'book'=>$book,
+        ]);
+
+        return $this->fetch();
+    }
+
+    public function demo14(){
+
+        setcookie('siteName','www.shuaibi.com');
+        return $this->fetch();
+    }
+
+    public function demo15()
+    {
+        $this->view->domain = "www.baidu.com";
+        $this->view->time = time();
+        return $this->fetch('demo14');
+    }
+
+    public function demo16()
+    {
+        // dump(Config::get());
+        return $this->fetch();
+    }
+
+    public function demo17()
+    {
+        $this->view->engine->layout(false);
+        return $this->fetch();
+    }
+
+
+    public function demo18()
+    {
+        $user = [];
+
+        for($key=0;$key<10;$key++)
+        {
+            $user[] = [
+                'name'=>'shuaibi_'.$key,
+                'age'=>rand(0,10),
+            ];
+        }
+
+        return $this->view->fetch('',['user'=>$user]);
     }
 
 }
